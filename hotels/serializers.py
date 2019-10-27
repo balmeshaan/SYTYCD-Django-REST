@@ -72,7 +72,7 @@ class UserSerializer(serializers.ModelSerializer):
 	def get_past_bookings(self, obj):
 		today = datetime.today()
 		bookings = Booking.objects.filter(user=obj, check_in__lt=today)
-		return PastBookingDetailsSerializer(bookings).data
+		return PastBookingDetailsSerializer(bookings, many=True).data
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
